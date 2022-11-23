@@ -1,5 +1,22 @@
 models:
-  # ...
+  Student: 
+    name: string:100
+    surname: string:100
+    level: string:100 nullable
+    subject: string:100 default:BIHAR
+    id_carte: integer index
+    relationships: 
+      hasMany: Teacher
+  Classe: 
+    classe_name: string:100
+    nb_student: integer
+    relationships:
+      hasMany: Student
+  Teacher:
+    subject: string:100
+    id_class: id foreign:classe.id 
+    relationships:
+      belongsToMany: Classe
 
 controllers:
   # ...

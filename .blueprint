@@ -1,2 +1,16 @@
+created:
+    - database/factories/StudentFactory.php
+    - database/factories/ClasseFactory.php
+    - database/factories/TeacherFactory.php
+    - database/migrations/2022_11_23_215531_create_students_table.php
+    - database/migrations/2022_11_23_215532_create_classes_table.php
+    - database/migrations/2022_11_23_215533_create_teachers_table.php
+    - database/migrations/2022_11_23_215534_create_classe_teacher_table.php
+    - app/Models/Student.php
+    - app/Models/Classe.php
+    - app/Models/Teacher.php
 models:
-    User: {  }
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Student: { name: 'string:100', surname: 'string:100', level: 'string:100 nullable', subject: 'string:100 default:BIHAR', id_carte: 'integer index', relationships: { hasMany: Teacher } }
+    Classe: { classe_name: 'string:100', nb_student: integer, relationships: { hasMany: Student } }
+    Teacher: { subject: 'string:100', id_class: 'id foreign:classe.id', relationships: { belongsToMany: Classe } }
